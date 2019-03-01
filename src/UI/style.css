@@ -1,0 +1,216 @@
+.nte_ui *{
+	margin:0px;
+	padding:0px;
+	list-style-type: none;
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	font-size: 13px;
+	box-sizing: border-box;
+	outline: none;
+}
+.nte_ui .left{ text-align:left; }
+.nte_ui .center{ text-align:center; }
+.nte_ui .right{ text-align:right; }
+
+.nte_ui .hidden{
+	display:none;
+}
+.nte_ui .h1{
+	font-size:32px;
+}
+.nte_ui .h2{
+	font-size:28px;
+}
+.nte_ui .h3{
+	font-size:20px;
+}
+.nte_ui .h4{
+	font-size:16px;
+}
+.nte_ui .bold{
+	font-weight:bold;
+}
+
+.nte_ui .mb5{ margin-bottom:5px; }
+.nte_ui .mb10{ margin-bottom:10px; }
+.nte_ui .mb15{ margin-bottom:15px; }
+.nte_ui .mb20{ margin-bottom:20px; }
+.nte_ui .mb25{ margin-bottom:25px; }
+.nte_ui .mb30{ margin-bottom:30px; }
+
+.nte_ui .mt5{ margin-top:5px; }
+.nte_ui .mt10{ margin-top:10px; }
+.nte_ui .mt15{ margin-top:15px; }
+.nte_ui .mt20{ margin-top:20px; }
+.nte_ui .mt25{ margin-top:25px; }
+.nte_ui .mt30{ margin-top:30px; }
+
+.nte_ui .mm5{ margin:5px 0px; }
+.nte_ui .mm10{ margin:10px 0px; }
+.nte_ui .mm15{ margin:15px 0px; }
+.nte_ui .mm20{ margin:20px 0px; }
+.nte_ui .mm25{ margin:25px 0px; }
+.nte_ui .mm30{ margin:30px 0px; }
+
+
+.nte_ui .btn_select{
+	display:inline-block;
+	background:#2a8;
+	padding:10px 20px;
+	font-size:14px;
+	color:#fff;
+	cursor:pointer;
+}
+.nte_ui .btn_clear{
+	cursor:pointer;
+}
+.nte_ui .btn_trimclear{
+	cursor:pointer;
+}
+.nte_ui .btn_cancel{
+	color:#666;
+	margin-right:20px;
+	cursor:pointer;
+}
+.nte_ui .btn_submits{
+	color:#181;
+	cursor:pointer;
+}
+
+
+
+.nte_ui .transition600ms{
+	transition-duration:600ms;
+	-webkit-transition-duration:600ms;
+	-moz-transition-duration:600ms;
+	-ms-transition-duration:600ms;
+	-o-transition-duration:600ms;
+}
+.nte_ui .window_toggle{
+	display:none;
+}
+.nte_ui .nte_bg{
+	background:rgba(0,0,0,0.6);
+	position:fixed;
+	left:0;
+	top:0;
+	right:0;
+	bottom:0;
+	opacity:0;
+	-webkit-opacity:0;
+	-moz-opacity:0;
+	-ms-opacity:0;
+	-o-opacity:0;
+	z-index:-3;
+}
+.nte_ui .nte_window{
+	background:#fff;
+	position:fixed;
+	width:500px;
+	height:600px;
+	margin-left:-250px;
+	margin-top:-300px;
+	left:50%;
+	top:50%;
+	padding:20px;
+	opacity:0;
+	-webkit-opacity:0;
+	-moz-opacity:0;
+	-ms-opacity:0;
+	-o-opacity:0;
+	z-index:-3;
+}
+.nte_ui .window_toggle:checked+.nte_bg{
+	z-index:1000;
+	opacity:1;
+	-webkit-opacity:1;
+	-moz-opacity:1;
+	-ms-opacity:1;
+	-o-opacity:1;
+}
+.nte_ui .window_toggle:checked~.nte_window{
+	z-index:1001;
+	opacity:1;
+	-webkit-opacity:1;
+	-moz-opacity:1;
+	-ms-opacity:1;
+	-o-opacity:1;
+}
+.nte_ui .nte_window .step{
+	display:none;
+}
+.nte_ui .nte_window .step.active{
+	display:block;
+}
+.nte_ui .nte_window .step1{
+	position:absolute;
+	width:100%;
+	left:0px;
+	top:50%;
+	margin-top:-40px;
+}
+.nte_ui .nte_window .step2 .triming_area{
+	border:solid 1px #999;
+	position:relative;
+	width:100%;
+	overflow:hidden;
+	padding-bottom:300px;
+}
+.nte_ui .nte_window .step2 .triming_area .trim_image_base,
+.nte_ui .nte_window .step2 .triming_area .trim_image_base2{
+	position:absolute;
+	width:100%;
+	left:0px;
+	top:0px;
+}
+.nte_ui .nte_window .step2 .triming_area .trimarea{
+	background:rgba(0,0,50,0.1);
+	position:absolute;
+	width:250px;
+	height:250px;
+	left:50%;
+	top:50%;
+	margin-left:-125px;
+	margin-top:-125px;
+	cursor:pointer;
+	overflow:hidden;
+	border:solid 2px #2aa;
+}
+.nte_ui .nte_window .step2 .triming_area .bg{
+	position:absolute;
+	left:0px;
+	top:0;
+	right:0;
+	bottom:0;
+}
+.nte_ui .nte_window .step2 .zoom_progress{
+	margin-top:5px;
+	height:10px;
+	position:relative;
+	background:#e0e0e0;
+}
+.nte_ui .nte_window .step2 .zoom_progress .value{
+	height:10px;
+	position:absolute;
+	background:#179;
+	width:50%;
+}
+.nte_ui .nte_window .step2 .zoom_progress .value:after{
+	content:"";
+	width:25px;
+	height:25px;
+	position:absolute;
+	border-radius:50%;
+	background:#179;
+	border:solid 1px #fff;
+	left:100%;
+	margin-left:-12px;
+	margin-top:-7px;
+}
+.nte_ui .nte_window .step2 .foots{
+	text-align:right;
+	position:absolute;
+	width:100%;
+	bottom:0px;
+	left:0px;
+	padding:20px;
+}
