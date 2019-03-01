@@ -29,13 +29,11 @@
 				<a class="btn_trimclear">トリム設定をクリア</a><br><br>
 				<a class="btn_clear">画像をクリア</a>
 			</div>
-
-			<div class="foots">
-				<a class="btn_cancel">キャンセル</a>
-				<a class="btn_submits">この画像で決定</a>
-			</div><!-//.foots-->
 		</div><!--//.step2-->
-
+		<div class="foots">
+			<a class="btn_cancel">キャンセル</a>
+			<a class="btn_submits">この画像で決定</a>
+		</div><!-//.foots-->
 	</div><!--//.nte_window-->
 	<div class="nte_bg"></div>
 
@@ -46,7 +44,13 @@
 	<form method="post" class="form_trims hidden">
 		<input type="hidden" name="path" class="hidden_path">
 		<input type="hidden" name="filename" class="hidden_filename">
+		<input type="hidden" name="width_base" class="hidden_width_base" value="">
 		<input type="hidden" name="width" class="hidden_width" value="">
+		<input type="hidden" name="width_output" class="hidden_width_output" value="<?php echo @$this->outputWidth; ?>">
+		<input type="hidden" name="height_base" class="hidden_height_base" value="">
+		<input type="hidden" name="height" class="hidden_height" value="">
+		<input type="hidden" name="height_output" class="hidden_height_output" value="<?php echo @$this->outputWidth; ?>">
+
 		<input type="hidden" name="offset_x" class="hidden_offsetx" value="0">
 		<input type="hidden" name="offset_y" class="hidden_offsety" value="0">
 		<input type="hidden" name="offset_zoom" class="hidden_zoom" value="100">

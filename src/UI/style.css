@@ -118,6 +118,7 @@
 	-ms-opacity:0;
 	-o-opacity:0;
 	z-index:-3;
+	overflow-y:auto;
 }
 .nte_ui .window_toggle:checked+.nte_bg{
 	z-index:1000;
@@ -153,24 +154,17 @@
 	position:relative;
 	width:100%;
 	overflow:hidden;
-	padding-bottom:300px;
 }
-.nte_ui .nte_window .step2 .triming_area .trim_image_base,
-.nte_ui .nte_window .step2 .triming_area .trim_image_base2{
-	position:absolute;
+.nte_ui .nte_window .step2 .triming_area .trim_image_base{
 	width:100%;
-	left:0px;
-	top:0px;
 }
 .nte_ui .nte_window .step2 .triming_area .trimarea{
 	background:rgba(0,0,50,0.1);
 	position:absolute;
 	width:250px;
 	height:250px;
-	left:50%;
-	top:50%;
-	margin-left:-125px;
-	margin-top:-125px;
+	left:0;
+	top:0;
 	cursor:pointer;
 	overflow:hidden;
 	border:solid 2px #2aa;

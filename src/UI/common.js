@@ -18,8 +18,8 @@ $(function(){
 					$(".nte_ui .hidden_path").val(data.path);
 					$(".nte_ui .hidden_filename").val(data.file_name);
 
+					$(".nte_ui .hidden_width_base").val($(".nte_ui .nte_window .step2 .triming_area").width());
 					$(".nte_ui .hidden_width").val($(".nte_ui .nte_window .step2 .triming_area .trimarea").width());
-
 				}
 
 			},
@@ -36,8 +36,7 @@ $(function(){
 		x:0,
 		y:0,
 	};
-
-	$("body").on("mousedown",".nte_ui .step2 .triming_area  .trimarea",function(e){
+	$("body").on("mousedown",".nte_ui .step2 .triming_area .trimarea",function(e){
 		if(!mouse_enabled){
 			mouse_enabled=true;
 			mouse_position={
@@ -45,8 +44,8 @@ $(function(){
 				y:e.offsetY,
 			};
 			trim_position={
-				x:parseInt($(".nte_ui .nte_window .step2 .triming_area .trim_image_base").css("left")),
-				y:parseInt($(".nte_ui .nte_window .step2 .triming_area .trim_image_base").css("top")),
+				x:parseInt($(".nte_ui .nte_window .step2 .triming_area .trimarea").css("left")),
+				y:parseInt($(".nte_ui .nte_window .step2 .triming_area .trimarea").css("top")),
 			};
 		}
 		return false;
@@ -65,9 +64,9 @@ $(function(){
 				y:e.offsetY-mouse_position["y"],
 			};
 
-			$(".nte_ui .nte_window .step2 .triming_area .trim_image_base").css({
-				"left":vec_position["x"]+trim_position["x"],
-				"top":vec_position["y"]+trim_position["y"],
+			$(".nte_ui .nte_window .step2 .triming_area .trimarea").css({
+				"left":parseInt(vec_position["x"]+trim_position["x"]),
+				"top":parseInt(vec_position["y"]+trim_position["y"]),
 			});
 
 			$(".nte_ui .hidden_offsetx").val(vec_position["x"]+trim_position["x"]);
@@ -79,6 +78,7 @@ $(function(){
 
 	//zoom up down
 	var zoom_progress_enabled=false;
+	var zoom_trimarea_width=0;
 	$("body").on("mousedown",".nte_ui .step2 .zoom_progress",function(){
 		if(!zoom_progress_enabled){
 			zoom_progress_enabled=true;
@@ -92,7 +92,7 @@ $(function(){
 
 			var persec=parseInt((e.offsetX*100)/$(".nte_ui .step2 .zoom_progress").width());
 
-			$(".nte_ui .nte_window .step2 .triming_area .trim_image_base").css({
+			$(".nte_ui .nte_window .step2 .triming_area .trimarea").css({
 				width:((persec-50)+100)+"%",
 			});
 
@@ -124,7 +124,7 @@ $(function(){
 		$(".nte_ui .hidden_offsety").val(0);
 		$(".nte_ui .hidden_zoom").val(100);
 
-		$(".nte_ui .nte_window .step2 .triming_area .trim_image_base").css({
+		$(".nte_ui .nte_window .step2 .triming_area .trimarea").css({
 			left:0,
 			top:0,
 		});
@@ -147,6 +147,9 @@ $(function(){
 
 	//submit
 	$("body").on("click",".nte_ui .btn_submits",function(){
+
+		$(".nte_ui .hidden_height_base").val(parseInt($(".nte_ui .nte_window .step2 .triming_area").css("padding-bottom")));
+		$(".nte_ui .hidden_height").val($(".nte_ui .nte_window .step2 .triming_area .trimarea").height());
 
 		$.ajax({
 			url:$(".nte_ui .url_trimupload").text(),
