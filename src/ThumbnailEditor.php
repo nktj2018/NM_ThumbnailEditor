@@ -118,41 +118,25 @@ namespace nakatsuji\thumbnaileditor{
 			//offset
 			$offset_x=$params["offset_x"]/$rate0;
 			$offset_y=$params["offset_y"]/$rate0;
-/*
-print_r(array(
-	"before"=>array(
-		"x"=>$ix,
-		"y"=>$iy,
-	),
-	"after"=>array(
-		"x"=>$ox,
-		"y"=>$oy,
-	),
-	"offset"=>array(
-		"x"=>$offset_x,
-		"y"=>$offset_y,
-	),
 
-));
-*/
 			$output=ImageCreateTrueColor($ox, $oy);
 			imagecopyresampled($output, $input,0, 0, $offset_x, $offset_y, $ix*$rate0*$rate2, $iy*$rate0*$rate2 ,$ix, $iy);
 
 			if($image_type==IMAGETYPE_PNG){
-				imagepng($output,$this->buffer."/".$params["filename"],9);
+				imagepng($output,$this->buffer."/".basename($params["path"]),9);
 			}
 			else if($image_type==IMAGETYPE_GIF){
-				imagegif($output,$this->buffer."/".$params["filename"],95);
+				imagegif($output,$this->buffer."/".basename($params["path"]),95);
 			}
 			else
 			{
-				imagejpeg($output,$this->buffer."/".$params["filename"],95);
+				imagejpeg($output,$this->buffer."/".basename($params["path"]),95);
 			}
 
-	print_r($params);
 			ImageDestroy($input);
 			ImageDestroy($output);
 
+			return true;
 		}
 	}
 

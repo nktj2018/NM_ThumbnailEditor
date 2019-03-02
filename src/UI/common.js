@@ -14,12 +14,9 @@ $(function(){
 					$(".nte_ui .nte_window .step").removeClass("active");
 					$(".nte_ui .nte_window .step2").addClass("active");
 					$(".nte_ui .nte_window .step2 .triming_area .trim_image_base").attr("src",data.path);
+					$(".nte_ui .nte_window .foots").removeClass("hidden");
 
 					$(".nte_ui .hidden_path").val(data.path);
-					$(".nte_ui .hidden_filename").val(data.file_name);
-
-					$(".nte_ui .hidden_width_base").val($(".nte_ui .nte_window .step2 .triming_area").width());
-					$(".nte_ui .hidden_width").val($(".nte_ui .nte_window .step2 .triming_area .trimarea").width());
 				}
 
 			},
@@ -157,6 +154,7 @@ $(function(){
 		$(".nte_ui .nte_window .step2").removeClass("active");
 		$(".nte_ui .nte_window .step1").addClass("active");
 
+		$(".nte_ui .nte_window .foots").addClass("hidden");
 	});
 
 	//trimclear
@@ -185,11 +183,14 @@ $(function(){
 		$(".nte_ui .nte_window .step2").removeClass("active");
 		$(".nte_ui .nte_window .step1").addClass("active");
 		$(".nte_ui #nte_ui").prop("checked",false);
+
+		$(".nte_ui .nte_window .foots").addClass("hidden");
 	});
 
 	//submit
 	$("body").on("click",".nte_ui .btn_submits",function(){
 
+		$(".nte_ui .hidden_width_base").val($(".nte_ui .nte_window .step2 .triming_area").width());
 		$(".nte_ui .hidden_width").val($(".nte_ui .nte_window .step2 .triming_area .trimarea").width());
 		$(".nte_ui .hidden_height").val($(".nte_ui .nte_window .step2 .triming_area .trimarea").height());
 
@@ -197,12 +198,15 @@ $(function(){
 			url:$(".nte_ui .url_trimupload").text(),
 			type:"POST",
 			data:new FormData($(".form_trims").get(0)),
+			async:true,
 			contentType:false,
 			processData:false,
 			success:function(data){
 				if(data.enabled){
-
-
+					$(".nte_ui .nte_window .step2").removeClass("active");
+					$(".nte_ui .nte_window .step1").addClass("active");
+					$(".nte_ui .nte_window .foots").addClass("hidden");
+					$(".nte_ui #nte_ui").prop("checked",false);
 				}
 			}
 		});

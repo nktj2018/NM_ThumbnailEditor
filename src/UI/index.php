@@ -30,7 +30,7 @@
 				<a class="btn_clear">画像をクリア</a>
 			</div>
 		</div><!--//.step2-->
-		<div class="foots">
+		<div class="foots hidden">
 			<a class="btn_cancel">キャンセル</a>
 			<a class="btn_submits">この画像で決定</a>
 		</div><!-//.foots-->
@@ -43,7 +43,6 @@
 
 	<form method="post" class="form_trims hidden">
 		<input type="hidden" name="path" class="hidden_path">
-		<input type="hidden" name="filename" class="hidden_filename">
 		<input type="hidden" name="width_base" class="hidden_width_base" value="">
 		<input type="hidden" name="width" class="hidden_width" value="">
 		<input type="hidden" name="height_base" class="hidden_height_base" value="">
