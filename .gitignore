@@ -1,1 +1,5 @@
 /nte_tmp
+/vendor
+/composer.lock
+/composer.phar
+/*.lnk

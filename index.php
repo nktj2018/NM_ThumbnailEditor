@@ -1,7 +1,8 @@
 <?php
 
 //setting
-include("../Library/src/ThumbnailEditor.php");
+require "vendor/autoload.php";
+
 $NTE=new nakatsuji\thumbnaileditor\ThumbnailEditor();
 
 if(@$_POST){
