@@ -1,0 +1,19 @@
+{
+	"name":"nakatsuji/thumbnaileditor",
+	"description": "Easy to implement image trimming editing function for thumbnail",
+	"type": "library",
+	"license": "MIT",
+	"authors": [{
+		"name": "masao nakatsuji",
+		"email": "nakatsuji@gmail.com"
+	}],
+	"keywords": ["image","thumbnail","edit","PHP","NM"],
+	"require": {
+		"php": ">=5.3.2"
+	},
+	"autoload": {
+		"psr-4": {
+			"nakatsuji\\thumbnaileditor\\":"src/"
+		}
+	}
+}
