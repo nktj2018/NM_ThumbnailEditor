@@ -20,7 +20,7 @@
 
 			<p class="mm10"><span style="background:#e0e0e0;display:inline-block;width:20px;margin-right:5px;padding:10px 0px;vertical-align:middle;"></span>部分がトリミング範囲です</p>
 
-			<p>拡大率</p>
+			<p>トリム範囲拡大・縮小</p>
 			<div class="zoom_progress mb30">
 				<div class="value"></div>
 			</div><!--//.zoom_progress-->
@@ -46,10 +46,8 @@
 		<input type="hidden" name="filename" class="hidden_filename">
 		<input type="hidden" name="width_base" class="hidden_width_base" value="">
 		<input type="hidden" name="width" class="hidden_width" value="">
-		<input type="hidden" name="width_output" class="hidden_width_output" value="<?php echo @$this->outputWidth; ?>">
 		<input type="hidden" name="height_base" class="hidden_height_base" value="">
 		<input type="hidden" name="height" class="hidden_height" value="">
-		<input type="hidden" name="height_output" class="hidden_height_output" value="<?php echo @$this->outputWidth; ?>">
 
 		<input type="hidden" name="offset_x" class="hidden_offsetx" value="0">
 		<input type="hidden" name="offset_y" class="hidden_offsety" value="0">

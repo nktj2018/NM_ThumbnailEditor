@@ -105,23 +105,20 @@ namespace nakatsuji\thumbnaileditor{
 
 			$rate0=$params["width_base"]/ImageSX($input);
 			$rate=$params["width_base"]/$params["width"];
-			$rate2=$params["width_output"]/$params["width"];
+			$rate2=$this->outputWidth/$params["width"];
 
-print_r($rate0*$rate2);
 			//before image size
 			$ix=ImageSX($input);
 			$iy=ImageSY($input);
 
 			//after image size
-			$ox=$params["width_output"];
-			$oy=$params["width_output"];
+			$ox=$this->outputWidth;
+			$oy=$this->outputWidth;
 
-//offset
-$offset_x=$params["offset_x"]/$rate0;
-$offset_y=$params["offset_y"]/$rate0;
-//$offset_x=0;
-//$offset_y=0;
-
+			//offset
+			$offset_x=$params["offset_x"]/$rate0;
+			$offset_y=$params["offset_y"]/$rate0;
+/*
 print_r(array(
 	"before"=>array(
 		"x"=>$ix,
@@ -137,7 +134,7 @@ print_r(array(
 	),
 
 ));
-
+*/
 			$output=ImageCreateTrueColor($ox, $oy);
 			imagecopyresampled($output, $input,0, 0, $offset_x, $offset_y, $ix*$rate0*$rate2, $iy*$rate0*$rate2 ,$ix, $iy);
 
