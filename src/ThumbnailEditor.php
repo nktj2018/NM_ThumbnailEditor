@@ -13,13 +13,6 @@ namespace nakatsuji\thumbnaileditor{
 				$this->receive=$option["receive"];
 			}
 
-			if(!@$this->receive["setFile"]){
-				$this->receive["setFile"]=$_SERVER["REQUEST_URI"]."?method=setFile";
-			}
-			if(!@$this->receive["trimUpload"]){
-				$this->receive["trimUpload"]=$_SERVER["REQUEST_URI"]."?method=trimUpload";
-			}
-
 			if(@$option["buffer"]){
 				$this->buffer=$option["buffer"];
 			}
@@ -28,18 +21,38 @@ namespace nakatsuji\thumbnaileditor{
 				$this->outputWidth=$option["outputWidth"];
 			}
 
-
 			@mkdir($this->buffer);
+
+			if(@$_GET["common"]){
+				if($_GET["common"]=="css"){
+					header("Content-Type: text/css");
+					header("Cache-Control: max-age=86400");
+
+					include(dirname(__FILE__)."/UI/style.css");
+					exit;
+				}
+				else if($_GET["common"]=="js"){
+					header("Content-Type: text/javascript");
+					header("Cache-Control: max-age=86400");
+
+					include(dirname(__FILE__)."/UI/common.js");
+					exit;
+				}
+			}
+
+			if(@$_GET["method"]=="setFile"){
+				$this->receive_setfile();
+			}
+			else if(@$_GET["method"]=="trimUpload"){
+				$this->receive_trimupload();
+			}
 		}
 
 		public function viewUI(){
 			include(dirname(__FILE__)."/UI/index.php");
 		}
-		public function viewSet($name){
-			
-		}
 
-		public function receive_setfile(){
+		private function receive_setfile(){
 			header("Content-Type: application/json");
 
 			if(@$_FILES){
@@ -63,7 +76,7 @@ namespace nakatsuji\thumbnaileditor{
 			exit;
 		}
 
-		public function receive_trimupload(){
+		private function receive_trimupload(){
 
 			header("Content-Type: application/json");
 
@@ -85,6 +98,8 @@ namespace nakatsuji\thumbnaileditor{
 			}
 			exit;
 		}
+
+		//image_convert
 
 		private function image_convert($params){
 
@@ -118,6 +133,11 @@ namespace nakatsuji\thumbnaileditor{
 			$offset_y=$params["offset_y"]/$rate0;
 
 			$output=ImageCreateTrueColor($ox, $oy);
+
+			if($image_type==IMAGETYPE_PNG){
+				imagealphablending($output, false);
+				imagesavealpha($output, true);
+			}
 			imagecopyresampled($output, $input,0, 0, $offset_x, $offset_y, $ix*$rate0*$rate2, $iy*$rate0*$rate2 ,$ix, $iy);
 
 			if($image_type==IMAGETYPE_PNG){

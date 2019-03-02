@@ -4,6 +4,8 @@ $(function(){
 
 	//open nte
 	$("body").on("click","label[for=nte_ui][data-nte]",function(){
+		$(".nte_ui .btn_cancel").click();
+
 		nte_name=$(this).attr("data-nte");
 	});
 
@@ -86,16 +88,16 @@ $(function(){
 				left=0;
 			}
 
-			if(left>$(triming_area).width()-$(triming_target).width()-3){
-				left=$(triming_area).width()-$(triming_target).width()-3;
+			if(left>$(triming_area).width()-$(triming_target).width()-1){
+				left=$(triming_area).width()-$(triming_target).width()-1;
 			}
 
 			if(top<0){
 				top=0;
 			}
 
-			if(top>$(triming_area).height()-$(triming_target).height()-3){
-				top=$(triming_area).height()-$(triming_target).height()-3;
+			if(top>$(triming_area).height()-$(triming_target).height()-1){
+				top=$(triming_area).height()-$(triming_target).height()-1;
 			}
 
 
@@ -193,6 +195,9 @@ $(function(){
 		$(".nte_ui #nte_ui").prop("checked",false);
 
 		$(".nte_ui .nte_window .foots").addClass("hidden");
+		$(".nte_ui .file_setfile").val("");
+
+		$(".nte_ui .btn_trimclear").click();
 	});
 
 	//submit
@@ -209,8 +214,27 @@ $(function(){
 			async:true,
 			contentType:false,
 			processData:false,
+			beforeSend:function(xhr, setting){
+				$(".nte_ui .waiting_icon").css({
+					"opacity":1,
+					"-webkit-opacity":1,
+					"-moz-opacity":1,
+					"-ms-opacity":1,
+					"-o-opacity":1,
+				});
+				return true;
+			},
 			success:function(data){
+
 				if(data.enabled){
+					$(".nte_ui .waiting_icon").css({
+						"opacity":0,
+						"-webkit-opacity":0,
+						"-moz-opacity":0,
+						"-ms-opacity":0,
+						"-o-opacity":0,
+					});
+
 					$(".nte_ui .nte_window .step2").removeClass("active");
 					$(".nte_ui .nte_window .step1").addClass("active");
 					$(".nte_ui .nte_window .foots").addClass("hidden");
@@ -224,6 +248,9 @@ $(function(){
 
 					$("*[data-nte="+nte_name+"][data-nte_mode=delete_btn]").addClass("active");
 
+					$(".nte_ui .btn_trimclear").click();
+					$(".nte_ui .file_setfile").val("");
+
 				}
 			}
 		});
@@ -233,7 +260,6 @@ $(function(){
 	//thumbnail clear(outer event)
 	$("body").on("click","*[data-nte][data-nte_mode=delete_btn]",function(){
 		var nte_name=$(this).attr("data-nte");
-		console.log(nte_name);
 
 		$("img[data-nte="+nte_name+"]").attr("src","");
 		$("*[data-nte="+nte_name+"][data-nte_mode=path]").val("");

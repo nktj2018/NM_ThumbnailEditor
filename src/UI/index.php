@@ -1,6 +1,5 @@
-<link rel="stylesheet" href="../Library/src/UI/style.css">
-<script src="../Library/src/UI/common.js"></script>
-
+<link rel="stylesheet" href="?common=css">
+<script src="?common=js"></script>
 <div class="nte_ui">
 	<input type="checkbox" id="nte_ui" class="window_toggle">
 	<label for="nte_ui" class="nte_bg transition600ms"></label>
@@ -29,11 +28,12 @@
 				<a class="btn_trimclear">トリム設定をクリア</a><br><br>
 				<a class="btn_clear">画像をクリア</a>
 			</div>
+			<div class="foots hidden">
+				<a class="btn_cancel">キャンセル</a>
+				<a class="waiting_icon"></a>
+				<a class="btn_submits">この画像で決定</a>
+			</div><!-//.foots-->
 		</div><!--//.step2-->
-		<div class="foots hidden">
-			<a class="btn_cancel">キャンセル</a>
-			<a class="btn_submits">この画像で決定</a>
-		</div><!-//.foots-->
 	</div><!--//.nte_window-->
 	<div class="nte_bg"></div>
 
@@ -54,8 +54,8 @@
 	</form>
 
 	<div class="hidden">
-		<div class="url_setfile"><?php echo @$this->receive["setFile"]; ?></div>
-		<div class="url_trimupload"><?php echo @$this->receive["trimUpload"]; ?></div>
+		<div class="url_setfile">?method=setFile</div>
+		<div class="url_trimupload">?method=trimUpload</div>
 	</div>
 
 </div><!--//.nte_ui-->

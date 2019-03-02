@@ -106,9 +106,9 @@
 	background:#fff;
 	position:fixed;
 	width:500px;
-	height:600px;
+	height:500px;
 	margin-left:-250px;
-	margin-top:-300px;
+	margin-top:-250px;
 	left:50%;
 	top:50%;
 	padding:20px;
@@ -200,13 +200,9 @@
 	margin-left:-12px;
 	margin-top:-7px;
 }
-.nte_ui .nte_window .step2 .foots{
+.nte_ui .nte_window .foots{
+	margin-top:20px;
 	text-align:right;
-	position:absolute;
-	width:100%;
-	bottom:0px;
-	left:0px;
-	padding:20px;
 }
 .nte_ui .sample_trimarea{
 	background:#e0e0e0;
@@ -222,4 +218,33 @@
 }
 *[data-nte_mode=delete_btn].active{
 	display:inline-block;
+}
+.nte_ui .waiting_icon{
+	display:inline-block;
+	vertical-align:middle;
+	width:30px;
+	height:30px;
+	border-radius:50%;
+	border:solid 3px #2ab;
+	border-left:solid 3px #e0e0e0;
+	animation: icon_wait 1s linear infinite;
+	-webkit-animation: icon_wait 1s linear infinite;
+	-moz-animation: icon_wait 1s linear infinite;
+	-ms-animation: icon_wait 1s linear infinite;
+	-o-animation: icon_wait 1s linear infinite;
+	opacity:0;
+	-webkit-opacity:0;
+	-moz-opacity:0;
+	-ms-opacity:0;
+	-o-opacity:0;
+}
+@keyframes icon_wait{
+	0%{
+		transform:rotate(0deg);
+		-webkit-transform:rotate(0deg);
+	}
+	100%{
+		transform:rotate(360deg);
+		-webkit-transform:rotate(360deg);
+	}
 }
