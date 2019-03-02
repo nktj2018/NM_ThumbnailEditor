@@ -1,5 +1,12 @@
 $(function(){
 
+	var nte_name="";
+
+	//open nte
+	$("body").on("click","label[for=nte_ui][data-nte]",function(){
+		nte_name=$(this).attr("data-nte");
+	});
+
 	//file setting..
 	$("body").on("change",".nte_ui .file_setfile",function(){
 		$.ajax({
@@ -17,6 +24,7 @@ $(function(){
 					$(".nte_ui .nte_window .foots").removeClass("hidden");
 
 					$(".nte_ui .hidden_path").val(data.path);
+					$(".nte_ui .hidden_filename").val(data.file_name);
 				}
 
 			},
@@ -207,10 +215,31 @@ $(function(){
 					$(".nte_ui .nte_window .step1").addClass("active");
 					$(".nte_ui .nte_window .foots").addClass("hidden");
 					$(".nte_ui #nte_ui").prop("checked",false);
+
+					//value input
+					$("img[data-nte="+nte_name+"]").attr("src",data.path);
+					$("*[data-nte="+nte_name+"][data-nte_mode=path]").val(data.path);
+					$("*[data-nte="+nte_name+"][data-nte_mode=file_name]").val(data.file_name);
+					$("*[data-nte="+nte_name+"][data-nte_mode=changed]").val(1);
+
+					$("*[data-nte="+nte_name+"][data-nte_mode=delete_btn]").addClass("active");
+
 				}
 			}
 		});
 
 	});
 
+	//thumbnail clear(outer event)
+	$("body").on("click","*[data-nte][data-nte_mode=delete_btn]",function(){
+		var nte_name=$(this).attr("data-nte");
+		console.log(nte_name);
+
+		$("img[data-nte="+nte_name+"]").attr("src","");
+		$("*[data-nte="+nte_name+"][data-nte_mode=path]").val("");
+		$("*[data-nte="+nte_name+"][data-nte_mode=file_name]").val("");
+		$("*[data-nte="+nte_name+"][data-nte_mode=changed]").val(0);
+
+		$("*[data-nte="+nte_name+"][data-nte_mode=delete_btn]").removeClass("active");
+	});
 });

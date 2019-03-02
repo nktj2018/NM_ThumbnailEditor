@@ -13,12 +13,12 @@
 			<p class="h4 mb10">トリミングする部分を調整してください</p>
 
 			<div class="triming_area">
-				<img class="trim_image_base" src="nte_tmp/023c42e4b1d0b86755d9a0e3c7c1ee0d42b3b8a75ac946cc232f2a4722541e32">
+				<img class="trim_image_base">
 				<div class="bg"></div>
 				<div class="trimarea"></div>
 			</div>
 
-			<p class="mm10"><span style="background:#e0e0e0;display:inline-block;width:20px;margin-right:5px;padding:10px 0px;vertical-align:middle;"></span>部分がトリミング範囲です</p>
+			<p class="mm10"><span class="sample_trimarea"></span>部分がトリミング範囲です</p>
 
 			<p>トリム範囲拡大・縮小</p>
 			<div class="zoom_progress mb30">
@@ -43,11 +43,11 @@
 
 	<form method="post" class="form_trims hidden">
 		<input type="hidden" name="path" class="hidden_path">
+		<input type="hidden" name="file_name" class="hidden_filename">
 		<input type="hidden" name="width_base" class="hidden_width_base" value="">
 		<input type="hidden" name="width" class="hidden_width" value="">
 		<input type="hidden" name="height_base" class="hidden_height_base" value="">
 		<input type="hidden" name="height" class="hidden_height" value="">
-
 		<input type="hidden" name="offset_x" class="hidden_offsetx" value="0">
 		<input type="hidden" name="offset_y" class="hidden_offsety" value="0">
 		<input type="hidden" name="offset_zoom" class="hidden_zoom" value="100">

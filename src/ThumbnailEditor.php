@@ -20,10 +20,6 @@ namespace nakatsuji\thumbnaileditor{
 				$this->receive["trimUpload"]=$_SERVER["REQUEST_URI"]."?method=trimUpload";
 			}
 
-			if(@$option["name"]){
-				$this->name=$option["name"];
-			}
-
 			if(@$option["buffer"]){
 				$this->buffer=$option["buffer"];
 			}
@@ -37,9 +33,10 @@ namespace nakatsuji\thumbnaileditor{
 		}
 
 		public function viewUI(){
-
 			include(dirname(__FILE__)."/UI/index.php");
-
+		}
+		public function viewSet($name){
+			
 		}
 
 		public function receive_setfile(){
@@ -76,6 +73,8 @@ namespace nakatsuji\thumbnaileditor{
 
 				echo json_encode(array(
 					"enabled"=>true,
+					"path"=>$_POST["path"]."_2",
+					"file_name"=>$_POST["file_name"],
 				));
 			}
 			else
@@ -83,7 +82,6 @@ namespace nakatsuji\thumbnaileditor{
 				echo json_encode(array(
 					"enabled"=>false,
 				));
-
 			}
 			exit;
 		}
@@ -123,14 +121,14 @@ namespace nakatsuji\thumbnaileditor{
 			imagecopyresampled($output, $input,0, 0, $offset_x, $offset_y, $ix*$rate0*$rate2, $iy*$rate0*$rate2 ,$ix, $iy);
 
 			if($image_type==IMAGETYPE_PNG){
-				imagepng($output,$this->buffer."/".basename($params["path"]),9);
+				imagepng($output,$this->buffer."/".basename($params["path"])."_2",9);
 			}
 			else if($image_type==IMAGETYPE_GIF){
-				imagegif($output,$this->buffer."/".basename($params["path"]),95);
+				imagegif($output,$this->buffer."/".basename($params["path"])."_2",95);
 			}
 			else
 			{
-				imagejpeg($output,$this->buffer."/".basename($params["path"]),95);
+				imagejpeg($output,$this->buffer."/".basename($params["path"])."_2",95);
 			}
 
 			ImageDestroy($input);

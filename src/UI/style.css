@@ -208,3 +208,18 @@
 	left:0px;
 	padding:20px;
 }
+.nte_ui .sample_trimarea{
+	background:#e0e0e0;
+	display:inline-block;
+	width:20px;
+	margin-right:5px;
+	padding:10px 0px;
+	vertical-align:middle;
+}
+
+*[data-nte_mode=delete_btn]{
+	display:none;
+}
+*[data-nte_mode=delete_btn].active{
+	display:inline-block;
+}
