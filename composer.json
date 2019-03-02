@@ -1,5 +1,5 @@
 {
 	"require":{
-		"nakatsuji/thumbnaileditor":"dev-master"
+		"nakatsuji/thumbnaileditor":"^1.0"
 	}
 }
