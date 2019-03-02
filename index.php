@@ -1,15 +1,13 @@
 <?php
 
+//setting
 include("../Library/src/ThumbnailEditor.php");
-
 $NTE=new nakatsuji\thumbnaileditor\ThumbnailEditor();
 
-//receive
-if(@$_GET["method"]=="setFile"){
-	$NTE->receive_setfile();
-}
-else if(@$_GET["method"]=="trimUpload"){
-	$NTE->receive_trimupload();
+if(@$_POST){
+	echo "<pre>";
+	print_r($_POST);
+	echo "</pre>";
 }
 ?>
 <!DOCTYPE html>
@@ -28,18 +26,28 @@ a{
 }
 </style>
 <script src="jquery.js"></script>
-<div style="text-align:center;margin-top:33.333333333333%;">
+<div style="text-align:center;">
 	<h1>Thumbnail Editor</h1>
-	<div>
-		<label for="nte_ui" data-nte="nte0001" class="buttons">click here</label>
-		<div><img src="" data-nte="nte0001" style="width:200px"></div>
-		<a data-nte="nte0001" data-nte_mode="delete_btn">クリア</a>
-		<div>
-			<input type="hidden" name="path" data-nte="nte0001" data-nte_mode="path">
-			<input type="hidden" name="file_name" data-nte="nte0001" data-nte_mode="file_name">
-			<input type="hidden" name="changed" data-nte="nte0001" data-nte_mode="changed">
+
+	<form method="post">
+		<?php
+		for($u1=0;$u1<3;$u1++){
+		?>
+		<div style="margin-bottom:10px">
+			<label for="nte_ui" data-nte="nte000<?php echo $u1; ?>" class="buttons">click here</label>
+			<div style="margin-top:10px"><img src="" data-nte="nte000<?php echo $u1; ?>" style="width:200px"></div>
+			<a data-nte="nte000<?php echo $u1; ?>" data-nte_mode="delete_btn">クリア</a>
+			<div>
+				<input type="hidden" name="<?php echo $u1; ?>[path]" data-nte="nte000<?php echo $u1; ?>" data-nte_mode="path">
+				<input type="hidden" name="<?php echo $u1; ?>[file_name]" data-nte="nte000<?php echo $u1; ?>" data-nte_mode="file_name">
+				<input type="hidden" name="<?php echo $u1; ?>[changed]" data-nte="nte000<?php echo $u1; ?>" data-nte_mode="changed">
+			</div>
 		</div>
-	</div>
+		<?php
+		}
+		?>
+		<input type="submit" value="submit">
+	</form>
 </div>
 <?php $NTE->viewUI(); ?>
 </body>
