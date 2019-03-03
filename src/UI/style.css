@@ -169,12 +169,82 @@
 	overflow:hidden;
 	box-shadow:0px 0px 4px 0px #175;
 }
-.nte_ui .nte_window .step2 .triming_area .bg{
+.nte_ui .nte_window .step2 .triming_area .btn_offset_left{
 	position:absolute;
 	left:0px;
-	top:0;
-	right:0;
-	bottom:0;
+	top:50%;
+}
+.nte_ui .nte_window .step2 .triming_area .btn_offset_top{
+	position:absolute;
+	left:50%;
+	top:0px;
+}
+.nte_ui .nte_window .step2 .triming_area .btn_offset_right{
+	position:absolute;
+	left:100%;
+	top:50%;
+	margin-left:-15px;
+}
+.nte_ui .nte_window .step2 .triming_area .btn_offset_bottom{
+	position:absolute;
+	left:50%;
+	top:100%;
+	margin-top:-15px;
+}
+.nte_ui .nte_window .step2 .triming_area .btn_offset_left:after{
+	content:"";
+	display:block;
+	border-right: 7px solid transparent;
+	border-bottom: 10px solid #aaa;
+	border-left: 7px solid transparent; 
+	transform:rotate(-90deg);
+	-webkit-transform:rotate(-90deg);
+	-moz-transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg);
+	-o-transform:rotate(-90deg);
+}
+.nte_ui .nte_window .step2 .triming_area .btn_offset_top:after{
+	content:"";
+	display:block;
+	border-right: 7px solid transparent;
+	border-bottom: 10px solid #aaa;
+	border-left: 7px solid transparent; 
+	transform:rotate(-0deg);
+	-webkit-transform:rotate(-0deg);
+	-moz-transform:rotate(-0deg);
+	-ms-transform:rotate(-0deg);
+	-o-transform:rotate(-0deg);
+}
+.nte_ui .nte_window .step2 .triming_area .btn_offset_right:after{
+	content:"";
+	display:block;
+	border-right: 7px solid transparent;
+	border-bottom: 10px solid #aaa;
+	border-left: 7px solid transparent; 
+	transform:rotate(90deg);
+	-webkit-transform:rotate(90deg);
+	-moz-transform:rotate(90deg);
+	-ms-transform:rotate(90deg);
+	-o-transform:rotate(90deg);
+}
+.nte_ui .nte_window .step2 .triming_area .btn_offset_bottom:after{
+	content:"";
+	display:block;
+	border-right: 7px solid transparent;
+	border-bottom: 10px solid #aaa;
+	border-left: 7px solid transparent; 
+	transform:rotate(180deg);
+	-webkit-transform:rotate(180deg);
+	-moz-transform:rotate(180deg);
+	-ms-transform:rotate(180deg);
+	-o-transform:rotate(180deg);
+}
+.nte_ui .nte_window .step2 .triming_area .btn_rotate{
+	color:#666;
+	position:absolute;
+	right:10px;
+	bottom:5px;
+
 }
 .nte_ui .nte_window .step2 .zoom_progress{
 	margin-top:5px;

@@ -6,6 +6,7 @@ namespace nakatsuji\thumbnaileditor{
 
 		private $buffer="nte_tmp";
 		private $outputWidth=600;
+		private $language="en";
 
 		public function __construct($option=array()){
 
@@ -19,6 +20,10 @@ namespace nakatsuji\thumbnaileditor{
 
 			if(@$option["outputWidth"]){
 				$this->outputWidth=$option["outputWidth"];
+			}
+
+			if(@$option["language"]){
+				$this->language=$option["language"];
 			}
 
 			@mkdir($this->buffer);
@@ -46,9 +51,15 @@ namespace nakatsuji\thumbnaileditor{
 			else if(@$_GET["method"]=="trimUpload"){
 				$this->receive_trimupload();
 			}
+			else if(@$_GET["method"]=="rotate"){
+				$this->receive_rotate($_POST);
+			}
 		}
 
 		public function viewUI(){
+			$text=@file_get_contents(dirname(__FILE__)."/language/".$this->language.".json");
+			$text=json_decode($text,true);
+
 			include(dirname(__FILE__)."/UI/index.php");
 		}
 
@@ -97,6 +108,58 @@ namespace nakatsuji\thumbnaileditor{
 				));
 			}
 			exit;
+		}
+
+		private function receive_rotate(){
+			header("Content-Type: application/json");
+
+			if(!@$_POST){
+				echo json_encode(array(
+					"enabled"=>false,
+				));
+				exit;
+			}
+
+			$image_type=exif_imagetype($_POST["path"]);
+
+			if($image_type==IMAGETYPE_PNG){
+				$input=ImageCreateFromPNG($_POST["path"]);
+			}
+			else if($image_type==IMAGETYPE_GIF){
+				$input=ImageCreateFromGIF($_POST["path"]);
+			}
+			else
+			{
+				$input=ImageCreateFromJPEG($_POST["path"]);
+			}
+
+			$color = imagecolorallocate($input, 255, 255,255);
+			$output = ImageRotate($input, 90,$color);
+			if($image_type==IMAGETYPE_PNG){
+				imagealphablending($output, false);
+				imagesavealpha($output, true);
+			}
+
+			if($image_type==IMAGETYPE_PNG){
+				imagepng($output,$_POST["path"],9);
+			}
+			else if($image_type==IMAGETYPE_GIF){
+				imagegif($output,$_POST["path"],95);
+			}
+			else
+			{
+				imagejpeg($output,$_POST["path"],95);
+			}
+
+			ImageDestroy($input);
+			ImageDestroy($output);
+
+			echo json_encode(array(
+				"enabled"=>true,
+				"path"=>$_POST["path"],
+			));
+			exit;
+
 		}
 
 		//image_convert

@@ -1,0 +1,11 @@
+{
+	"step1":"Please select an image file first.",
+	"step1select":"Select image file",
+	"step2":"Adjust the trimming position and range.",
+	"step2range":"The part is the trimming range.",
+	"step2_1":"Trim range expansion / reduction",
+	"btn_trimclear":"Clear trim setting",
+	"btn_clear":"clear image",
+	"cancel":"Cancel",
+	"submit":"Decision"
+}

@@ -1,6 +1,7 @@
 $(function(){
 
 	var nte_name="";
+	var index=0;
 
 	//open nte
 	$("body").on("click","label[for=nte_ui][data-nte]",function(){
@@ -113,6 +114,54 @@ $(function(){
 			return false;
 		}
 	});
+
+	//offset left
+	$("body").on("click",".nte_ui .btn_offset_left",function(){
+		$(triming_target).css({
+			left:"0px",
+		});
+		$(hidden_offsetx).val(0);
+	});
+	//offset top
+	$("body").on("click",".nte_ui .btn_offset_top",function(){
+		$(triming_target).css({
+			top:"0px",
+		});
+		$(hidden_offsety).val(0);
+	});
+	//offset right
+	$("body").on("click",".nte_ui .btn_offset_right",function(){
+		$(triming_target).css({
+			left:$(triming_area).width()-$(triming_target).width(),
+		});
+		$(hidden_offsetx).val($(triming_area).width()-$(triming_target).width());
+	});
+	//offset bottom
+	$("body").on("click",".nte_ui .btn_offset_bottom",function(){
+		$(triming_target).css({
+			top:$(triming_area).height()-$(triming_target).height(),
+		});
+		$(hidden_offsety).val($(triming_area).height()-$(triming_target).height());
+	});
+	//rotate
+	$("body").on("click",".nte_ui .btn_rotate",function(){
+		$.ajax({
+			url:$(".nte_ui .url_rotate").text(),
+			method:"POST",
+			data:{
+				path:$(".nte_ui .hidden_path").val(),
+			},
+			success:function(data){
+
+				if(data.enabled){
+						index++;
+						$(".nte_ui .nte_window .step2 .triming_area .trim_image_base").attr("src",data.path+"?"+index);
+				}
+			},
+		});
+
+	});
+
 
 	//zoom up down
 	var zoom_progress=".nte_ui .step2 .zoom_progress";

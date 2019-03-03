@@ -5,33 +5,37 @@
 	<label for="nte_ui" class="nte_bg transition600ms"></label>
 	<div class="nte_window transition600ms">
 		<div class="step step1 center active">
-			<p class="center h3 mb10">まずファイルを選択してください</p>
-			<label for="nte_file_select" class="btn_select">ファイルを選択</label>
+			<p class="center h3 mb10"><?php echo @$text["step1"]; ?></p>
+			<label for="nte_file_select" class="btn_select"><?php echo @$text["step1select"]; ?></label>
 		</div><!--//.step1-->
 		<div class="step step2">
-			<p class="h4 mb10">トリミングする部分を調整してください</p>
+			<p class="h4 mb10"><?php echo @$text["step2"]; ?></p>
 
 			<div class="triming_area">
 				<img class="trim_image_base">
-				<div class="bg"></div>
 				<div class="trimarea"></div>
+				<a class="btn_offset_left"></a>
+				<a class="btn_offset_top"></a>
+				<a class="btn_offset_right"></a>
+				<a class="btn_offset_bottom"></a>
+				<a class="btn_rotate">rotate</a>
 			</div>
 
-			<p class="mm10"><span class="sample_trimarea"></span>部分がトリミング範囲です</p>
+			<p class="mm10"><span class="sample_trimarea"></span><?php echo @$text["step2range"]; ?></p>
 
-			<p>トリム範囲拡大・縮小</p>
+			<p><?php echo @$text["step2range"]; ?></p>
 			<div class="zoom_progress mb30">
 				<div class="value"></div>
 			</div><!--//.zoom_progress-->
 
 			<div class="right">
-				<a class="btn_trimclear">トリム設定をクリア</a><br><br>
-				<a class="btn_clear">画像をクリア</a>
+				<a class="btn_trimclear"><?php echo @$text["btn_trimclear"]; ?></a><br><br>
+				<a class="btn_clear"><?php echo @$text["btn_clear"]; ?></a>
 			</div>
 			<div class="foots hidden">
-				<a class="btn_cancel">キャンセル</a>
+				<a class="btn_cancel"><?php echo @$text["cancel"]; ?></a>
 				<a class="waiting_icon"></a>
-				<a class="btn_submits">この画像で決定</a>
+				<a class="btn_submits"><?php echo @$text["submit"]; ?></a>
 			</div><!-//.foots-->
 		</div><!--//.step2-->
 	</div><!--//.nte_window-->
@@ -55,6 +59,7 @@
 
 	<div class="hidden">
 		<div class="url_setfile">?method=setFile</div>
+		<div class="url_rotate">?method=rotate</div>
 		<div class="url_trimupload">?method=trimUpload</div>
 	</div>
 
