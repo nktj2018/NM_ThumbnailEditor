@@ -1,7 +1,7 @@
 <?php
 
 //setting
-require "../Library/src/Thumbnaileditor.php";
+require "vendor/autoload.php";
 
 $NTE=new nakatsuji\thumbnaileditor\ThumbnailEditor(array(
 	"language"=>"jp",
