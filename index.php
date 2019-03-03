@@ -1,9 +1,12 @@
 <?php
 
 //setting
-require "vendor/autoload.php";
+require "../Library/src/Thumbnaileditor.php";
 
-$NTE=new nakatsuji\thumbnaileditor\ThumbnailEditor();
+$NTE=new nakatsuji\thumbnaileditor\ThumbnailEditor(array(
+	"language"=>"jp",
+	"outputWidth"=>300,
+));
 
 if(@$_POST){
 	echo "<pre>";
