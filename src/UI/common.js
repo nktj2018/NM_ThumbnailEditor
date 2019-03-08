@@ -180,6 +180,25 @@ $(function(){
 	$("body").on("mouseup",zoom_progress,function(){
 		zoom_progress_enabled=false;
 	});
+	$("body").on("touchmove",zoom_progress,function(e){
+		var persec=parseInt((e.originalEvent.targetTouches[0].clientX*100)/$(zoom_progress).width());
+
+		var width=target_width*((persec)/100);
+		var height=target_height*((persec)/100);
+
+		$(triming_target).css({
+			width:width,
+			height:height,
+		});
+
+		if(persec>=0 && persec<=100){
+			
+			$(zoom_progress_value).css({
+				width:persec+"%",
+			});
+			$(hidden_zoom).val((persec)+100);
+		}
+	});
 	$("body").on("mousemove",zoom_progress,function(e){
 		if(zoom_progress_enabled){
 

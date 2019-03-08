@@ -14,11 +14,11 @@
 			<div class="triming_area">
 				<img class="trim_image_base">
 				<div class="trimarea"></div>
-				<a class="btn_offset_left"></a>
-				<a class="btn_offset_top"></a>
-				<a class="btn_offset_right"></a>
-				<a class="btn_offset_bottom"></a>
-				<a class="btn_rotate">rotate</a>
+				<a class="btn_offset_left" title="snap left."></a>
+				<a class="btn_offset_top" title="snap top."></a>
+				<a class="btn_offset_right" title="snap right."></a>
+				<a class="btn_offset_bottom" title="snap bottom."></a>
+				<a class="btn_rotate" title="rotate 90">rotate</a>
 			</div>
 
 			<p class="mm10"><span class="sample_trimarea"></span><?php echo @$text["step2range"]; ?></p>

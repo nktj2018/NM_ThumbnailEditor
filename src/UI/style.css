@@ -105,12 +105,11 @@
 .nte_ui .nte_window{
 	background:#fff;
 	position:fixed;
-	width:500px;
-	height:500px;
-	margin-left:-250px;
-	margin-top:-250px;
+	width:420px;
+	height:80%;
+	margin-left:-210px;
 	left:50%;
-	top:50%;
+	top:10%;
 	padding:20px;
 	opacity:0;
 	-webkit-opacity:0;
@@ -316,5 +315,28 @@
 	100%{
 		transform:rotate(360deg);
 		-webkit-transform:rotate(360deg);
+	}
+}
+@media screen and (max-width:600px){
+	.nte_ui .h3{
+		font-size:14px;
+	}
+	.nte_ui .h4{
+		font-size:14px;
+	}
+	.nte_ui .nte_window{
+		width:90%;
+		height:90%;
+		top:5%;
+		left:5%;
+		margin-left:0px;
+		padding:15px;
+	}
+	.nte_ui .nte_window .step2 .triming_area .trimarea{
+		width:200px;
+		height:200px;
+	}
+	.nte_ui .nte_window .foots{
+		margin-top:25px;
 	}
 }
