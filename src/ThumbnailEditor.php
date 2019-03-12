@@ -146,14 +146,14 @@ namespace nakatsuji\thumbnaileditor{
 			}
 
 			if($image_type==IMAGETYPE_PNG){
-				imagepng($output,$_POST["path"],9);
+				imagepng($output,$this->buffer."/".basename($_POST["path"]),9);
 			}
 			else if($image_type==IMAGETYPE_GIF){
-				imagegif($output,$_POST["path"],95);
+				imagegif($output,$this->buffer."/".basename($_POST["path"]),95);
 			}
 			else
 			{
-				imagejpeg($output,$_POST["path"],95);
+				imagejpeg($output,$this->buffer."/".basename($_POST["path"]),95);
 			}
 
 			ImageDestroy($input);
