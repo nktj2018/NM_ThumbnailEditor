@@ -7,6 +7,7 @@ namespace nakatsuji\thumbnaileditor{
 		private $buffer="nte_tmp";
 		private $outputWidth=600;
 		private $language="en";
+		private $root="";
 
 		public function __construct($option=array()){
 
@@ -24,6 +25,10 @@ namespace nakatsuji\thumbnaileditor{
 
 			if(@$option["language"]){
 				$this->language=$option["language"];
+			}
+
+			if(@$option["root"]){
+				$this->root=$option["root"];
 			}
 
 			@mkdir($this->buffer);
@@ -74,7 +79,7 @@ namespace nakatsuji\thumbnaileditor{
 				echo json_encode(array(
 					"enabled"=>true,
 					"hash"=>$hash,
-					"path"=>$this->buffer."/".$hash,
+					"path"=>$this->root.$this->buffer."/".$hash,
 					"file_name"=>$_FILES["files"]["name"],
 				));
 			}
