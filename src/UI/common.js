@@ -5,7 +5,7 @@ $(function(){
 
 	//open nte
 	$("body").on("click","label[for=nte_ui][data-nte]",function(){
-		$(".nte_ui .btn_cancel").click();
+	//	$(".nte_ui .btn_cancel").click();
 
 		nte_name=$(this).attr("data-nte");
 	});
@@ -65,6 +65,16 @@ $(function(){
 		}
 		return false;
 	});
+	$("body").on("touchstart",triming_area,function(e){
+		mouse_position={
+			x:e.originalEvent.changedTouches[0].pageX,
+			y:e.originalEvent.changedTouches[0].pageY,
+		};
+		trim_position={
+			x:parseInt($(triming_target).css("left")),
+			y:parseInt($(triming_target).css("top")),
+		};
+	});
 	$("body").on("mouseup",triming_area,function(e){
 		if(mouse_enabled){
 			mouse_enabled=false;
@@ -74,6 +84,42 @@ $(function(){
 	$("body").on("mouseleave",triming_area,function(e){
 		mouse_enabled=false;
 		return false;
+	});
+	$("body").on("touchmove",triming_area,function(e){
+
+			var vec_position={
+				x:e.originalEvent.changedTouches[0].pageX-mouse_position["x"],
+				y:e.originalEvent.changedTouches[0].pageY-mouse_position["y"],
+			};
+
+			var left=parseInt(vec_position["x"])+parseInt(trim_position["x"]);
+			var top=parseInt(vec_position["y"])+parseInt(trim_position["y"]);
+
+
+			if(left<0){
+				left=0;
+			}
+
+			if(left>$(triming_area).width()-$(triming_target).width()-5){
+				left=$(triming_area).width()-$(triming_target).width()-5;
+			}
+
+			if(top<0){
+				top=0;
+			}
+
+			if(top>$(triming_area).height()-$(triming_target).height()-5){
+				top=$(triming_area).height()-$(triming_target).height()-5;
+			}
+
+			$(triming_target).css({
+				"left":left,
+				"top":top,
+			});
+
+			$(hidden_offsetx).val(left);
+			$(hidden_offsety).val(top);
+
 	});
 	$("body").on("mousemove",triming_area,function(e){
 		if(mouse_enabled){
@@ -169,6 +215,10 @@ $(function(){
 	var target_width=$(triming_target).width();
 	var target_height=$(triming_target).height();
 	var hidden_zoom=".nte_ui .hidden_zoom";
+	$(window).on("resize",function(){
+		target_width=$(triming_target).width();
+		target_height=$(triming_target).height();
+	});
 
 	var zoom_progress_enabled=false;
 	var zoom_trimarea_width=0;
@@ -181,10 +231,9 @@ $(function(){
 		zoom_progress_enabled=false;
 	});
 	$("body").on("touchmove",zoom_progress,function(e){
-		var persec=parseInt((e.originalEvent.targetTouches[0].clientX*100)/$(zoom_progress).width());
-
-		var width=target_width*((persec)/100);
-		var height=target_height*((persec)/100);
+		var persec=parseInt(((e.originalEvent.targetTouches[0].clientX-$(zoom_progress).offset().left)*100)/$(zoom_progress).width());
+		var width=target_width*((persec+50)/100);
+		var height=target_height*((persec+50)/100);
 
 		$(triming_target).css({
 			width:width,
@@ -231,7 +280,7 @@ $(function(){
 	$("body").on("click",".nte_ui .btn_clear",function(){
 		$(".nte_ui .nte_window .step2").removeClass("active");
 		$(".nte_ui .nte_window .step1").addClass("active");
-
+		$(".nte_ui .file_setfile").val("");
 		$(".nte_ui .nte_window .foots").addClass("hidden");
 	});
 
@@ -303,22 +352,23 @@ $(function(){
 						"-o-opacity":0,
 					});
 
-					$(".nte_ui .nte_window .step2").removeClass("active");
-					$(".nte_ui .nte_window .step1").addClass("active");
-					$(".nte_ui .nte_window .foots").addClass("hidden");
 					$(".nte_ui #nte_ui").prop("checked",false);
 
 					//value input
-					$("img[data-nte="+nte_name+"]").attr("src",data.path);
+					$("img[data-nte="+nte_name+"]").attr("src",data.path+"?"+new Date().getSeconds());
 					$("*[data-nte="+nte_name+"][data-nte_mode=path]").val(data.path);
 					$("*[data-nte="+nte_name+"][data-nte_mode=file_name]").val(data.file_name);
 					$("*[data-nte="+nte_name+"][data-nte_mode=changed]").val(1);
 
 					$("*[data-nte="+nte_name+"][data-nte_mode=delete_btn]").addClass("active");
 
-					$(".nte_ui .btn_trimclear").click();
-					$(".nte_ui .file_setfile").val("");
-
+					if(!$("#hidden_retry").text()){
+						$(".nte_ui .btn_trimclear").click();
+						$(".nte_ui .file_setfile").val("");
+						$(".nte_ui .nte_window .step2").removeClass("active");
+						$(".nte_ui .nte_window .step1").addClass("active");
+						$(".nte_ui .nte_window .foots").addClass("hidden");
+					}
 				}
 			}
 		});
@@ -333,7 +383,5 @@ $(function(){
 		$("*[data-nte="+nte_name+"][data-nte_mode=path]").val("");
 		$("*[data-nte="+nte_name+"][data-nte_mode=file_name]").val("");
 		$("*[data-nte="+nte_name+"][data-nte_mode=changed]").val(0);
-
-		$("*[data-nte="+nte_name+"][data-nte_mode=delete_btn]").removeClass("active");
 	});
 });

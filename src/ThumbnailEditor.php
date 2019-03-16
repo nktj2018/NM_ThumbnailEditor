@@ -8,6 +8,7 @@ namespace nakatsuji\thumbnaileditor{
 		private $outputWidth=600;
 		private $language="en";
 		private $root="";
+		private $retry=false;
 
 		public function __construct($option=array()){
 
@@ -29,6 +30,10 @@ namespace nakatsuji\thumbnaileditor{
 
 			if(@$option["root"]){
 				$this->root=$option["root"];
+			}
+
+			if(@$option["retry"]){
+				$this->retry=$option["retry"];
 			}
 
 			@mkdir($this->buffer);

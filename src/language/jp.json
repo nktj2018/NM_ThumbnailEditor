@@ -4,8 +4,8 @@
 	"step2":"トリミングする部分を調整してください",
 	"step2range":"部分はトリミング範囲です",
 	"step2_1":"トリム範囲拡大・縮小",
-	"btn_trimclear":"トリム設定をクリア",
-	"btn_clear":"画像をクリア",
+	"btn_trimclear":"トリム設定クリア",
+	"btn_clear":"クリア",
 	"cancel":"キャンセル",
 	"submit":"この画像で決定"
 }

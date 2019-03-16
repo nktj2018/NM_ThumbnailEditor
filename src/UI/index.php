@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="?common=css">
 <script src="?common=js"></script>
 <div class="nte_ui">
+	<div class="hidden" id="hidden_retry"><?php echo $this->retry; ?></div>
 	<input type="checkbox" id="nte_ui" class="window_toggle">
 	<label for="nte_ui" class="nte_bg transition600ms"></label>
 	<div class="nte_window transition600ms">
@@ -23,7 +24,7 @@
 
 			<p class="mm10"><span class="sample_trimarea"></span><?php echo @$text["step2range"]; ?></p>
 
-			<p><?php echo @$text["step2range"]; ?></p>
+			<p><?php echo @$text["step2_1"]; ?></p>
 			<div class="zoom_progress mb30">
 				<div class="value"></div>
 			</div><!--//.zoom_progress-->
